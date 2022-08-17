@@ -1,2 +1,45 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+
+ <div class='container mt-5 h-75'>
+
+  <div class='row h-100'>
+    <div class='col-md-2'>
+
+      <div class = "genre-search-head border border-dark text-center">
+        <b>ジャンル検索</b>
+      </div>
+      <div class = "genre-search-contents border border-dark", style = "height:300px">
+        <p class = "ml-2 mt-2">ケーキ</p>
+        <p class = "ml-2">焼き菓子</p>
+        <p class = "ml-2">プリン</p>
+        <p class = "ml-2"> キャンディ</p>
+      </div>
+
+    </div>
+
+    <div  class='col-md-8'>
+      <div class = "top-image text-center">
+        <p>
+          ようこそ、ながのCAKEへ！<br>
+          このサイトは、ケーキ販売のECサイトになります。<br>
+          会員でない方も商品の閲覧はできますが、<br>
+          購入には会員登録が必要になります。
+        </p>
+      </div>
+      <div>
+        <div class = "new-arrival">
+          <h3>新着商品</h3>
+          <div class = "new-arrival-contents">
+            <% @new_items.each do |new_item| %>
+              <div>
+                <%= image_tag %>
+                <p><%= new_item.name %></p>
+                <p><%= new_item.price %></p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

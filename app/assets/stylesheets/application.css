@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+.top-image{
+  background-image: url("top-image.jpg")
+}
