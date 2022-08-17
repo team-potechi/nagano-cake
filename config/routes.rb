@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :order_details, only: [:update]
   end
 
+
   scope module: :public do
     root 'homes#top'
     get 'about' => 'homes#about'
