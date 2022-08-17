@@ -1,0 +1,67 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-8'>
+      <h4 class="ml-5", style="background-color: #f5f5f5; width:150px; padding-left: 12px;">マイページ</h4>
+
+      <table>
+        <tr>
+          <td>
+            <strong class="mr-4" style="font-size: 20px;">登録情報</strong>
+            <span><%= link_to "編集する", edit_customers_path, class: "btn btn-success ml-2 mt-3 mb-3 px-5" %><span>
+          </td>
+        </tr>
+      </table>
+
+      <table class="table table-bordered">
+
+        <tr>
+          <td style="background-color: #f5f5f5">氏名</td>
+          <td>
+            <span class="mr-2"><%= @customer.lastname %></span>
+            <span><%= @customer.firstname %></span>
+          </td>
+        </tr>
+        <tr>
+          <td style="background-color: #f5f5f5">カナ</td>
+          <td>
+            <span class="mr-2"><%= @customer.kana_lastname %></span>
+            <span><%= @customer.kana_firstname %></span>
+          </td>
+        </tr>
+        <tr>
+          <td style="background-color: #f5f5f5">郵便番号</td>
+          <td><%= @customer.postal_code %></td>
+        </tr>
+        <tr>
+          <td style="background-color: #f5f5f5">住所</td>
+          <td><%= @customer.address %></td>
+        </tr>
+        <tr>
+          <td style="background-color: #f5f5f5">電話番号</td>
+          <td><%= @customer.tel %></td>
+        </tr>
+        <tr>
+          <td style="background-color: #f5f5f5">メールアドレス</td>
+          <td><%= @customer.email %></td>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <td>
+            <strong class="mr-5", style="font-size: 20px;">配送先</strong>
+            <span><%= link_to "一覧を見る", addresses_path, method: :get, class: "btn btn-primary px-5" %></span>
+          </td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <td>
+            <strong class="mr-4", style="font-size: 20px;">注文履歴</strong>
+            <span><%= link_to "一覧を見る", orders_path, method: :get, class: "btn btn-primary mt-3 px-5 ml-1" %></span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
