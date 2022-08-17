@@ -1,64 +1,96 @@
-<h2>Sign up</h2>
-
+<div class="container">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
+  <table class="ml-5">
+    <h5 class="text-center", style="background-color:#ddd; width:150px; margin-left:100px;">新規登録画面</h5>
+    <tbody>
+      <tr>
+        <td><%= f.label :lastname,"名前" %></td>
+        <td><%= f.label :lastname,"(姓)" %></td>
+        <td class="pr-5"><%= f.text_field :lastname, placeholder:"令和" %></td>
+        <td><%= f.label :firstname,"(名)" %></td>
+        <td><%= f.text_field :firstname, placeholder:"道子" %></td>
+      </tr>
 
-  <div class="field">
-    <%= f.label :lastname %><br />
-    <%= f.text_field :lastname %>
-  </div>
+      <tr>
+        <td><%= f.label :kana_lastname,"フリガナ" %></td>
+        <td><%= f.label :kana_lastname,"(セイ)" %></td>
+        <td class="pr-5"><%= f.text_field :kana_lastname, placeholder:"レイワ" %></td>
+        <td><%= f.label :kana_firstname,"(メイ)" %></td>
+        <td><%= f.text_field :kana_firstname, placeholder:"ミチコ" %></td>
+      </tr>
 
-  <div class="field">
-    <%= f.label :firstname %><br />
-    <%= f.text_field :firstname %>
-  </div>
+      <tr>
+        <td><%= f.label :email,"メールアドレス" %></td>
+        <td></td>
+        <td><%= f.email_field :email, placeholder:"sample@example.com" %></td>
+        <td></td>
+        <td></td>
+      </tr>
 
-  <div class="field">
-    <%= f.label :kana_lastname %><br />
-    <%= f.text_field :kana_lastname %>
-  </div>
+      <tr>
+        <td><%= f.label :postal_code,"郵便番号(ハイフンなし)" %></td>
+        <td></td>
+        <td><%= f.text_field :postal_code, placeholder:"0000000" %></td>
+        <td></td>
+        <td></td>
+      </tr>
 
-  <div class="field">
-    <%= f.label :kana_firstname %><br />
-    <%= f.text_field :kana_firstname %>
-  </div>
+      <tr>
+        <td><%= f.label :address,"住所" %></td>
+        <td></td>
+        <td colspan="3"><%= f.text_field :address, placeholder:"東京都渋谷区代々木神園町0-0", size: "59%"%></td>
+      </tr>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email %>
-  </div>
+      <tr class="field">
+        <td><%= f.label :tel,"電話番号(ハイフンなし)" %></td>
+        <td></td>
+        <td><%= f.telephone_field :tel, placeholder:"0000000000" %></td>
+        <td></td>
+        <td></td>
+      </tr>
 
-  <div class="field">
-    <%= f.label :postal_code %><br />
-    <%= f.text_field :postal_code %>
-  </div>
+      <tr class="field">
+        <td>
+          <%= f.label :password do %>
+            <% if @minimum_password_length %>
+            パスワード(<%= @minimum_password_length %>文字以上)
+            <% end %>
+          <% end %>
+        </td>
+        <td></td>
+        <td>
+          <%= f.password_field :password, autocomplete: "new-password" %>
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
 
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
-  </div>
+      <tr class="field">
+        <td><%= f.label :password_confirmation,"パスワード(確認用)" %></td>
+        <td></td>
+        <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+        <td></td>
+        <td></td>
+      </tr>
 
-  <div class="field">
-    <%= f.label :tel %><br />
-    <%= f.telephone_field :tel %>
-  </div>
+      <tr class="field">
+        <td></td>
+        <td></td>
+        <td><%= f.submit "新規登録", class:"btn btn-success px-5 mt-3" %></td>
+        <td></td>
+        <td></td>
+      </tr>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+      <div class="actions">
+      </div>
+      <tr>
+        <td><h5 class="ml-5 pl-3 pr-3 text-center", style="background-color:#ddd;">既に登録済みの方</h5></td>
+      </tr>
+      <tr>
+        <td colspan="3", class="text-center"><p><%= render "public/shared/links" %>からログインしてください。</p></td>
+      </tr>
+    </tbody>
+  </table>
 <% end %>
-
-<%= render "public/shared/links" %>
+</div>
