@@ -18,7 +18,6 @@ Rails.application.routes.draw do
     resources :order_details, only: [:update]
   end
 
-
   scope module: :public do
     root 'homes#top'
     get 'about' => 'homes#about'
@@ -36,5 +35,8 @@ Rails.application.routes.draw do
     get 'orders/complete' => 'orders#complete'
     resources :addresses, except: [:new, :show]
   end
+
+
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
