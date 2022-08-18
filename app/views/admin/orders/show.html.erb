@@ -1,0 +1,104 @@
+<div class = "ml-5 mt-5 mr-5">
+  <div>
+    <h5 class = "text-center", style = "background-color:#eee; width:150px; margin-left:100px; font-weight:bold;">注文履歴詳細</h5>
+    <table class = "table table-borderless">
+      <tbody>
+        <tr>
+          <td style="width: 10%"><b>購入者</b></td>
+          <td style="width: 50%"><%= @order.customer.lastname %><%= @order.customer.firstname %></td>
+        </tr>
+        <tr>
+          <td><b>注文日</b></td>
+          <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+        </tr>
+        <tr>
+          <td><b>配送先</b></td>
+          <td>〒<%= @order.postal_code %> <%= @order.address %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><%= @order.shipping_name %></td>
+        </tr>
+        <tr>
+          <td><b>支払い方法</b></td>
+          <td><%= @order.payment_method %></td>
+        </tr>
+        <tr>
+          <td><b>注文ステータス</b></td>
+            <td>
+              <%= form_with model: [ :admin, @order ]  do |f| %>
+              <%= f.select :status,  Order.statuses.keys.to_a, {} %><%= f.submit "更新", class:"ml-5 btn btn-success" %>
+              <% end %>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <div style = "display:inline-block;">
+    <table class = "table table-borderless border-bottom border-top mt-5", style = "width:850px; border-color:#eee;" >
+      <thead>
+        <tr style = "background-color:#f2f2f2;">
+          <td style="width: 220px">
+            商品名
+          </td>
+          <td style="width: 180px">
+            単価（税込み）
+          </td>
+          <td style="width: 120px">
+            数量
+          </td>
+          <td style="width: 120px">
+            小計
+          </td>
+          <td style="width: 220px">
+            製作ステータス
+          </td>
+          <td>
+
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order_details.each do |order_detail| %>
+        <tr>
+          <td>
+            <%= order_detail.item.name %>
+          </td>
+          <td>
+            <%= order_detail.tax_price %>
+          </td>
+          <td>
+            <%= order_detail.amount %>
+          </td>
+          <td>
+            <%= order_detail.subtotal %>
+          </td>
+          <td>
+            <%= form_with model: [ :admin, order_detail ]  do |f| %>
+              <%= f.select :making_status, OrderDetail.making_statuses.keys.to_a, {} %><%= f.submit "更新", class:"ml-3  btn btn-success" %>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
+    <div class = "ml-5" style = "display:inline-block;">
+      <table class = "table table-borderless">
+        <tr>
+          <td><b>商品合計</b></td>
+          <td><%= @order.buy_total %>円</td>
+        </tr>
+        <tr>
+          <td><b>送料</b></td>
+          <td><%= @order.shipping_cost %>円</td>
+        </tr>
+        <tr>
+          <td><b>請求金額総額</b></td>
+          <td><%= @order.total_payment %>円</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

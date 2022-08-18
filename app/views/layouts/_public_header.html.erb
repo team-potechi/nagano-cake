@@ -5,8 +5,8 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
+      <div class="collapse navbar-collapse" id="navbarNavDropdown", style = "flex-wrap:wrap;">
+        <ul class="navbar-nav ml-auto", style = "margin-left:430px;">
         <% if customer_signed_in? %>
           <li>
             <%= link_to customers_path,class: 'nav-link text-light border border-white rounded mr-3' do %>
@@ -51,6 +51,12 @@
           </li>
         <% end %>
         </ul>
+        <div class="search_form mt-3", style = "margin-left:735px;">
+          <%= form_with method: :get do |f| %>
+            <%= f.text_field :word, placeholder:"Search" %>
+            <%= f.submit "検索", class: "btn", style:"background-color:#eee;" %>
+          <% end %>
+        </div>
       </div>
     </div>
   </nav>
