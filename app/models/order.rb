@@ -14,6 +14,6 @@ class Order < ApplicationRecord
     end
     return buy_total
   end
-  
+
 
 end

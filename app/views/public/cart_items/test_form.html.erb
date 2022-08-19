@@ -1,0 +1,8 @@
+
+<div>
+  <%= form_with model:@cart_item do |f| %>
+    <%= f.number_field :item_id, in: 1..10, style:"width:40px;" %>
+    <%= f.number_field :amount, in: 1..10, style:"width:40px;" %>
+    <%= f.submit "登録", class:"ml-1  btn btn-success" %>
+  <% end %>
+</div>
