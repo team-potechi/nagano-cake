@@ -1,23 +1,22 @@
-<%= form_with model:item do |f| %>
-  <strong><%= f.label :item_image, "商品画像", style:"margin-right:70px;" %></strong>
-  <%= f.file_field :item_image, accept: 'image/*' %><br>
+<strong><%= f.label :item_image, "商品画像", style:"margin-right:70px;" %></strong>
+<%= f.file_field :item_image, accept: 'image/*' %><br>
 
-  <strong><%= f.label :name, "商品名", style:"margin-right:86px;"  %></strong>
-  <%= f.text_field :name, placeholder: "商品名",size: "36" %><br>
+<strong><%= f.label :name, "商品名", style:"margin-right:86px;"  %></strong>
+<%= f.text_field :name, placeholder: "商品名",size: "36" %><br>
 
-  <strong><%= f.label :introduction, "商品説明", style:"vertical-align:top; margin-top:5px; margin-right:70px;"  %></strong>
-  <%= f.text_area :introduction, placeholder: "ここに説明文を記述します", style:"width:307px; height:150px; resize:none;" %><br>
+<strong><%= f.label :introduction, "商品説明", style:"vertical-align:top; margin-top:5px; margin-right:70px;"  %></strong>
+<%= f.text_area :introduction, placeholder: "ここに説明文を記述します", style:"width:307px; height:150px; resize:none;" %><br>
 
-  <strong><%= f.label :genre_id, "ジャンル", style:"margin-right:70px;"  %></strong>
-  <%= f.collection_select(:genre_id, genres, :id, :name, { prompt: "--選択してください--" }, {style: "width:307px;"}) %><br>
+<strong><%= f.label :genre_id, "ジャンル", style:"margin-right:70px;"  %></strong>
+<%= f.collection_select(:genre_id, @genres, :id, :name, { prompt: "--選択してください--" }, {style: "width:307px;"}) %><br>
 
-  <strong><%= f.label :price, "税抜価格", style:"margin-right:70px;"  %></strong>
-  <%= f.text_field :price, placeholder: "1000",size: "36" %><strong>円</strong><br>
+<strong><%= f.label :price, "税抜価格", style:"margin-right:70px;"  %></strong>
+<%= f.text_field :price, placeholder: "1000",size: "36" %><strong>円</strong><br>
 
-  <strong><%= f.label :sale_status, "販売ステータス", style:"margin-right:20px;"  %></strong>
-  <%= f.radio_button :sale_status, "true", checked: true %><span class="mr-4">販売中</span><%= f.radio_button :sale_status, "false" %>販売停止中<br>
-  <% if item.id.present? %>
-    <%= f.submit "変更を保存", class:"btn btn-success", style:"padding:5px 20px; margin:20px 20px 0 220px;" %>
-  <% end %>
-    <%= f.submit "新規登録", class:"btn btn-success", style:"padding:5px 20px; margin:20px 20px 0 220px;" %>
+<strong><%= f.label :sale_status, "販売ステータス", style:"margin-right:20px;"  %></strong>
+<%= f.radio_button :sale_status, "true", checked: true %><span class="mr-4">販売中</span><%= f.radio_button :sale_status, "false" %>販売停止中<br>
+<% if local_assigns[:item] %>
+  <%= f.submit "新規登録", class:"btn btn-success", style:"padding:5px 20px; margin:20px 20px 0 220px;" %>
+<% else %>
+  <%= f.submit "変更を保存", class:"btn btn-success", style:"padding:5px 20px; margin:20px 20px 0 220px;" %>
 <% end %>
