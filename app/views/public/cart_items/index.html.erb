@@ -1,0 +1,44 @@
+<div>
+  <div class = "ml-auto mr-auto mt-5" style = "width:800px; height:34px;">
+    <h5 style = "display:inline-block; padding-left:10px; padding-right:10px; background-color:#eee; font-weight:bold;">ショッピングカート</h5>
+    <%= link_to cart_items_destroy_all_path, method: :delete, class:"btn btn-danger", style:"display:inline-block; float:right;" do %>カートを空にする<% end %>
+  </div>
+  <div>
+    <table class = "table mt-5 table-bordered border-dark ml-auto mr-auto", style = "border-width:3px; width:900px;" >
+      <thead>
+        <tr style = "background-color:#eee;">
+          <td class = "border-dark", style = "width:40%">商品名</td>
+          <td class = "border-dark", style = "width:15%">単価（税込）</td>
+          <td class = "border-dark", style = "width:15%">数量</td>
+          <td class = "border-dark", style = "width:15%">小計</td>
+          <td class = "border-dark", style = "width:15%"></td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart_items.each do |cart_item| %>
+          <tr>
+            <td class = "border-dark",><%= cart_item.item.name %></td>
+            <td class = "border-dark",><%= cart_item.cart_tax_price %></td>
+            <td class = "border-dark",>
+              <%= form_with model:cart_item  do |f| %>
+                <%= f.number_field :amount, in: 1..10, style:"width:40px;" %>
+                <%= f.submit "変更", class:"ml-1  btn btn-success" %>
+              <% end %>
+            </td>
+            <td class = "border-dark",><%= cart_item.cart_subtotal %></td>
+            <td class = "border-dark text-center"><%= link_to cart_item_path(cart_item), method: :delete, class:"btn btn-danger" do %> 削除する<% end %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class = "mt-5 ml-auto mr-auto", style = "display: flex; width:800px">
+    <%= link_to root_path, class:"btn btn-primary", style:"height:40px; width:140px;" do %> 買い物を続ける<% end %>
+    <div style = "display: flex; margin-left:390px;">
+      <div class = "border border-dark", style = "width:134px; height:50px; line-height:3; background-color:#eee;">合計金額</div>
+      <div class = "border border-dark", style = "width:134px; height:50px; line-height:3;"><%= @cart_total %></div>
+    </div>
+  </div>
+  <div class = "text-center mt-5"><%= link_to new_order_path, class:"btn btn-success" do %> 情報入力に進む<% end %></div>
+</div>
+
