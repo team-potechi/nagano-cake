@@ -1,0 +1,40 @@
+<div class="container">
+  <%= flash[:notice] %>
+  <h5 class="text-center", style="background-color:#ddd; width:120px; margin:30px 0 30px 115px;">商品詳細</h5>
+  <div class="row mt-5">
+    <%= image_tag @item.get_item_image, style:"margin-left:70px;", size:"220x150" %>
+    <div class="col-8 m-auto">
+      <div class="col-10">
+        <table>
+          <tbody>
+            <tr>
+              <td width="140px">商品名</td>
+              <td width="300px"><%= @item.name %></td>
+            </tr>
+            <tr>
+              <td style="vertical-align: baseline;"><P style="margin-top:10px;">商品説明</P></td>
+              <td><P style="margin-top:10px;"><%= @item.introduction %><p/></td>
+            </tr>
+            <tr>
+              <td>ジャンル</td>
+              <td><%= @item.genre.name %></td>
+            </tr>
+            <tr>
+              <td><P style="margin-top:10px;">税込価格<br>(税抜価格)<p/></td>
+              <td><strong><%= @item.price.to_s(:delimited) %>（<%= @item.add_tax_price.to_s(:delimited) %>）円</strong></td>
+            </tr>
+            <tr>
+              <td>販売ステータス</td>
+              <% if @item.sale_status == true %>
+                <td class="text-success font-weight-bold">販売中</td>
+              <% else %>
+                <td class="text-secondary font-weight-bold">販売停止中</td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+        <%= link_to "編集する", edit_admin_item_path(@item), class:"w-25 btn btn-success", style:"padding:5px 20px; margin:20px 20px 0 120px;" %>
+      </div>
+    </div>
+  </div>
+</div>
