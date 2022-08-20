@@ -9,11 +9,7 @@ class Item < ApplicationRecord
     (item_image.attached?) ? item_image : 'no_image.jpg'
   end
 
-  def status
-    if self.sale_status == true
-      "販売中"
-    elsif self.sale_status == false
-      "販売停止中"
-    end
+  def add_tax_price
+    (self.price*1.10).round
   end
 end
