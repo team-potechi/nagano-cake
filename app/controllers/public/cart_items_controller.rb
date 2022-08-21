@@ -33,17 +33,24 @@ class Public::CartItemsController < ApplicationController
 
   def create
     @new_cart_item = CartItem.new(cart_item_params)
-    @cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
-    if @cart_item.present?
-      @cart_item.amount += params[:cart_item][:amount].to_i
-      @cart_item.save
-      redirect_to cart_items_path
-    else
-      @new_cart_item.customer_id = current_customer.id
-      if @new_cart_item.save
+    if params[:cart_item][:amount] == ""
+      flash[:notice] = "商品の登録に失敗しました"
+      @item = Item.find(params[:cart_item][:item_id])
+      @genres = Genre.all
+      @cart_item = CartItem.new
+      redirect_to item_path(params[:cart_item][:item_id])
+    else @cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
+      if @cart_item.present?
+        @cart_item.amount += params[:cart_item][:amount].to_i
+        @cart_item.save
         redirect_to cart_items_path
       else
-        redirect_to request.referer
+        @new_cart_item.customer_id = current_customer.id
+        if @new_cart_item.save
+          redirect_to cart_items_path
+        else
+          redirect_to request.referer
+        end
       end
     end
   end

@@ -14,6 +14,8 @@ class Admin::ItemsController < ApplicationController
       redirect_to admin_item_path(@item)
     else
       flash[:notice] = "商品の登録に失敗しました"
+      @genres = Genre.all
+      @item = Item.new
       render :new
     end
   end
@@ -38,6 +40,8 @@ class Admin::ItemsController < ApplicationController
       redirect_to admin_item_path(@item)
     else
       flash[:notice] = "商品登録情報の変更に失敗しました"
+      @genres = Genre.all
+      @item = Item.new
       render :edit
     end
   end

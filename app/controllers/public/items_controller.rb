@@ -1,7 +1,5 @@
 class Public::ItemsController < ApplicationController
 
-  before_action
-
   layout "public_application"
 
   def index
