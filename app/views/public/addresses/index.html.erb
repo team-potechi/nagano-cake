@@ -1,0 +1,74 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-9'>
+      <h4 class="ml-5 my-4", style="background-color: #f5f5f5; width:200px; padding-left: 12px;">配送先登録/一覧</h4>
+
+      <%= render 'error_messages', address: @address %>
+
+      <%= form_with model: @address, url: addresses_path, method: :post do |f| %>
+        <div class="row">
+          <div class="col-3 mt-3">
+            <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
+          </div>
+          <div class="col-4">
+            <%= f.text_field :postal_code, placeholder: "0000000", class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3 mt-3">
+            <%= f.label :address, "住所" %>
+          </div>
+          <div class="col-8">
+            <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3 mt-3">
+            <%= f.label :name, "宛名" %>
+          </div>
+          <div class="col-4">
+            <%= f.text_field :name, placeholder: "令和道子", class: "form-control" %>
+          </div>
+          <div class="col-4">
+          </div>
+          <div class="col-1">
+            <%= f.submit "新規登録", class: "btn btn-success px-5 mt-3", style: "font-weight: bold;" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+
+  <div class='row'>
+    <div class='col-md-9'>
+
+      <table class="table table-bordered mt-5">
+        <thead>
+          <tr>
+            <th>郵便番号</th>
+            <th>住所</th>
+            <th>宛名</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+        <% @addresses.each do |address| %>
+          <tr>
+            <td><%= address.postal_code %></td>
+            <td><%= address.address %></td>
+            <td><%= address.name %></td>
+            <td class="text-center">
+              <%= link_to "編集する", edit_address_path(address.id), method: :get, class: "btn btn-success mr-1", style: "font-weight: bold;" %>
+              <%= link_to "削除する", address_path(address.id), method: :delete, class: "btn btn-danger ml-1", style: "font-weight: bold;" %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
