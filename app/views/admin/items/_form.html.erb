@@ -8,7 +8,7 @@
 <%= f.text_area :introduction, placeholder: "ここに説明文を記述します", style:"width:307px; height:150px; resize:none;" %><br>
 
 <strong><%= f.label :genre_id, "ジャンル", style:"margin-right:70px;"  %></strong>
-<%= f.collection_select(:genre_id, @genres, :id, :name, { prompt: "--選択してください--" }, {style: "width:307px;"}) %><br>
+<%= f.collection_select(:genre_id, genres, :id, :name, { prompt: "--選択してください--" }, {style: "width:307px;"}) %><br>
 
 <strong><%= f.label :price, "税抜価格", style:"margin-right:70px;"  %></strong>
 <%= f.text_field :price, placeholder: "1000",size: "36" %><strong>円</strong><br>
