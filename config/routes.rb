@@ -21,7 +21,9 @@ Rails.application.routes.draw do
   scope module: :public do
     root 'homes#top'
     get 'about' => 'homes#about'
-    resources :items, only: [:index, :show]
+    resources :items, only: [:index, :show] do
+      get '/genre_items' => 'items#genre_items'
+    end
     resource :customers, only: [:show, :edit, :update] do
       get '/confirm' => 'customers#confirm'
       patch '/deleted' => 'customers#deleted'
