@@ -1,3 +1,4 @@
+
 <div class = "ml-auto mr-auto mt-5", style = "width:1000px;">
   <%= form_with model:@order, url: orders_confirm_path do |f| %>
   <h5 class = "ml-5 text-center", style = "background-color:#eee; width:150px; font-weight:bold;">注文情報入力</h5>
@@ -18,10 +19,10 @@
       　　　〒<%= current_customer.postal_code %><%= current_customer.address %><br>
       　　　<%= current_customer.lastname %><%= current_customer.firstname %><br>
       <%= f.radio_button :select_address, "登録済み住所から選択" %>
-      <%= f.label :select_address,  "登録済み住所から選択" %><br>
+      <%= f.label :select_address,  "登録済み住所から選択" %><span style = "color:red;"><%= flash[:registered] %></span><br>
       <%= f.select :address_id, options_from_collection_for_select(current_customer.addresses, :id, :address_display),  {}, {class: 'form-control form-select ml-5', style: "width:800px;"} %><br>
       <%= f.radio_button :select_address, "新しいお届け先" %>
-      <%= f.label :select_address,  "新しいお届け先" %><br>
+      <%= f.label :select_address,  "新しいお届け先" %><span style = "color:red;"><%= flash[:new] %></span><br>
       <%= f.label :new_postal_code,  "郵便番号(ハイフンなし)", class: "ml-5" %>
       <%= f.text_field :new_postal_code,class: "form-control", placeholder: "0000000", style: "width:200px; display:inline-block;" %><br>
       <%= f.label :new_address,  "住所", class: "ml-5" %>

@@ -20,8 +20,21 @@ class Public::OrdersController < ApplicationController
     if params[:order][:select_address] == "ご自身の住所"
       @selected_address = Address.create(customer_id:current_customer,name:current_customer.lastname + current_customer.firstname,postal_code:current_customer.postal_code,address:current_customer.address)
     elsif params[:order][:select_address] == "登録済み住所から選択"
-      @selected_address = Address.find(params[:order][:address_id])
+      if params[:order][:address_id] == nil
+        flash[:new] = ""
+        flash[:registered] = "<登録済み住所がありません>"
+        @order = Order.new
+        render "new"
+      else
+        @selected_address = Address.find(params[:order][:address_id])
+      end
     elsif params[:order][:select_address] == "新しいお届け先"
+      if params[:order][:new_shipping_name] == "" || params[:order][:new_postal_code] == "" || params[:order][:new_address] == ""
+        flash[:registered] = ""
+        flash[:new] = "<新しいお届け先をすべて入力してください>"
+        @order = Order.new
+        render "new"
+      end
       @selected_address = Address.create(customer_id:current_customer,name:params[:order][:new_shipping_name],postal_code:params[:order][:new_postal_code],address:params[:order][:new_address])
     end
 
