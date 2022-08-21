@@ -1,0 +1,47 @@
+<div>
+  <h5 class = "mt-5 text-center", style = "margin-left:200px; width:150px; background-color:#eee;">注文履歴一覧</h5>
+  <table class = "table table-bordered ml-auto mr-auto mt-5", style = "border-width:3px; border-color:#000; width:1300px;">
+    <thead>
+      <tr style = "background-color:#eee;">
+        <td style = "width:150px; border-color:#000;">注文日</td>
+        <td style = "width:720px; border-color:#000;">配送先</td>
+        <td style = "width:230px; border-color:#000;">注文商品</td>
+        <td style = "width:100px; border-color:#000;">支払金額</td>
+        <td style = "width:150px; border-color:#000;">ステータス</td>
+        <td style = "width:150px; border-color:#000;">注文詳細</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td style = "border-color:#000; vertical-align: middle;">
+            <%= order.created_at.strftime('%Y/%m/%d') %>
+          </td>
+          <td style = "border-color:#000; vertical-align: middle;">
+            〒<%= order.postal_code %><br>
+            <%= order.address %><br>
+            <%= order.shipping_name %>
+          </td>
+          <td style = "border-color:#000; vertical-align: middle;">
+            <% order.order_items_id.each do |item_id| %>
+              <%= Item.find(item_id).name %><br>
+            <% end %>
+          </td>
+          <td style = "border-color:#000; vertical-align: middle;">
+            <%= order.total_payment %>円
+          </td>
+          <td style = "border-color:#000; vertical-align: middle;">
+            <%= order.status %>
+          </td>
+          <td style = "border-color:#000; vertical-align: middle;">
+            <%= link_to order_path(order.id),class:"btn btn-primary" do %>
+            表示する
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+

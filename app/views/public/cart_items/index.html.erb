@@ -39,6 +39,16 @@
       <div class = "border border-dark", style = "width:134px; height:50px; line-height:3;"><%= @cart_total %></div>
     </div>
   </div>
+  <% if @cart_count != 0 %>
   <div class = "text-center mt-5"><%= link_to new_order_path, class:"btn btn-success" do %> 情報入力に進む<% end %></div>
+  <% end %>
 </div>
 
+
+<div>
+  <%= form_with model:@cart_item do |f| %>
+    <%= f.number_field :item_id, in: 1..10, style:"width:40px;" %>
+    <%= f.number_field :amount, in: 1..10, style:"width:40px;" %>
+    <%= f.submit "登録", class:"ml-1  btn btn-success" %>
+  <% end %>
+</div>

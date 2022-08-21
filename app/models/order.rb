@@ -15,5 +15,13 @@ class Order < ApplicationRecord
     return buy_total
   end
 
+  def order_items_id
+    order_items_id = []
+    self.order_details.each do |detail|
+      order_items_id.push(detail.item_id)
+    end
+    return order_items_id
+  end
+
 
 end
