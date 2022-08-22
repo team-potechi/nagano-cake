@@ -38,19 +38,19 @@
         <tr>
           <td style = "border-color:#000; background-color:#eee;">商品合計</td>
           <td style = "border-color:#000;">
-            <%= @order.buy_total %>
+            <%= @order.buy_total.to_s(:delimited) %>
           </td>
         </tr>
         <tr>
           <td style = "border-color:#000; background-color:#eee;">配送料</td>
           <td style = "border-color:#000;">
-            <%= @order.shipping_cost %>
+            <%= @order.shipping_cost.to_s(:delimited) %>
           </td>
         </tr>
         <tr>
           <td style = "border-color:#000; background-color:#eee;"><b>ご請求額</b></td>
           <td style = "border-color:#000;">
-            <b><%= @order.total_payment %>円</b>
+            <b><%= @order.total_payment.to_s(:delimited) %></b>
           </td>
         </tr>
       </table>
@@ -71,9 +71,9 @@
         <% @order_details.each do |order_detail| %>
           <tr>
             <td style = "border-color:#000;"><%= Item.find(order_detail.item_id).name %></td>
-            <td style = "border-color:#000;"><%= order_detail.tax_price %></td>
+            <td style = "border-color:#000;"><%= order_detail.tax_price.to_s(:delimited) %></td>
             <td style = "border-color:#000;"><%= order_detail.amount %></td>
-            <td style = "border-color:#000;"><%= order_detail.subtotal %> </td>
+            <td style = "border-color:#000;"><%= order_detail.subtotal.to_s(:delimited) %> </td>
           </tr>
         <% end %>
       </tbody>

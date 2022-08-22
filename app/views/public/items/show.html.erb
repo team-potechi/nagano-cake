@@ -23,7 +23,7 @@
                 <%= form_with model:@cart_item, method: :post do |f| %>
                   <%= f.hidden_field :item_id, :value => @item.id %>
                   <%= f.select :amount, [["１個",1],["２個",2],["３個",3],["４個",4],["５個",5],], prompt: "個数選択" %>
-                  <%= f.submit "カートに入れる", class:"ml-5 mr-5 btn btn-success" %>
+                  <%= f.submit "カートに入れる", class:"ml-5 mr-5 btn btn-success", style:"font-weight:bold;" %>
                 <% end %>
               </div>
             </div>

@@ -4,7 +4,7 @@
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "public/shared/error_messages", resource: resource %>
     <table class="ml-5">
-      <h5 class="text-center", style="background-color:#ddd; width:150px; margin:30px 0 30px 100px;">新規会員登録</h5>
+      <h5 class="text-center", style="background-color:#eee; width:150px; margin:30px 0 30px 100px;"><b>新規会員登録</b></h5>
       <tbody>
         <tr>
           <td><%= f.label :lastname,"名前" %></td>
@@ -81,7 +81,7 @@
           <td></td>
           <td>
             <div class="actions">
-              <%= f.submit "新規登録", class:"btn btn-success px-5 mt-3" %></td>
+              <%= f.submit "新規登録", class:"btn btn-success px-5 mt-3", style:"font-weight:bold;" %></td>
             </div>
           <td></td>
           <td></td>

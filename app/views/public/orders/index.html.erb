@@ -1,6 +1,6 @@
 <div>
-  <h5 class = "mt-5 text-center", style = "margin-left:200px; width:150px; background-color:#eee;">注文履歴一覧</h5>
-  <table class = "table table-bordered ml-auto mr-auto mt-5", style = "border-width:3px; border-color:#000; width:1300px;">
+  <h5 class = "mt-5 text-center", style = "margin-left:200px; width:150px; background-color:#eee;"><b>注文履歴一覧</b></h5>
+  <table class = "table table-bordered ml-auto mr-auto mt-5", style = "border-width:3px; border-color:#000; width:1200px;">
     <thead>
       <tr style = "background-color:#eee;">
         <td style = "width:150px; border-color:#000;">注文日</td>
@@ -28,14 +28,14 @@
             <% end %>
           </td>
           <td style = "border-color:#000; vertical-align: middle;">
-            <%= order.total_payment %>円
+            <%= order.total_payment.to_s(:delimited) %>円
           </td>
           <td style = "border-color:#000; vertical-align: middle;">
             <%= order.status %>
           </td>
           <td style = "border-color:#000; vertical-align: middle;">
             <%= link_to order_path(order.id),class:"btn btn-primary" do %>
-            表示する
+              <b>表示する</b>
             <% end %>
           </td>
         </tr>

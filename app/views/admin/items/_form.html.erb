@@ -16,7 +16,7 @@
 <strong><%= f.label :sale_status, "販売ステータス", style:"margin-right:20px;"  %></strong>
 <%= f.radio_button :sale_status, "true", checked: true %><span class="mr-4">販売中</span><%= f.radio_button :sale_status, "false" %>販売停止中<br>
 <% if local_assigns[:item] %>
-  <%= f.submit "新規登録", class:"btn btn-success", style:"padding:5px 20px; margin:20px 20px 0 220px;" %>
+  <%= f.submit "新規登録", class:"btn btn-success", style:"font-weight:bold; padding:5px 20px; margin:20px 20px 0 220px;" %>
 <% else %>
-  <%= f.submit "変更を保存", class:"btn btn-success", style:"padding:5px 20px; margin:20px 20px 0 220px;" %>
+  <%= f.submit "変更を保存", class:"btn btn-success", style:"font-weight:bold; padding:5px 20px; margin:20px 20px 0 220px;" %>
 <% end %>

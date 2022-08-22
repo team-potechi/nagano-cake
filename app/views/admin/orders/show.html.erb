@@ -5,7 +5,11 @@
       <tbody>
         <tr>
           <td style="width: 10%"><b>購入者</b></td>
-          <td style="width: 50%"><%= @order.customer.lastname %><%= @order.customer.firstname %></td>
+          <td style="width: 50%">
+            <%= link_to admin_customer_path(@order), class:"text-dark", style:"text-decoration: underline;" do %>
+              <%= @order.customer.lastname %><%= @order.customer.firstname %>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <td><b>注文日</b></td>
@@ -27,7 +31,7 @@
           <td><b>注文ステータス</b></td>
             <td>
               <%= form_with model: [ :admin, @order ]  do |f| %>
-              <%= f.select :status,  Order.statuses.keys.to_a, {} %><%= f.submit "更新", class:"ml-5 btn btn-success" %>
+              <%= f.select :status,  Order.statuses.keys.to_a, {} %><%= f.submit "更新", class:"ml-5 btn btn-success", style:"font-weight:bold;" %>
               <% end %>
             </td>
         </tr>
@@ -40,19 +44,19 @@
       <thead>
         <tr style = "background-color:#f2f2f2;">
           <td style="width: 220px">
-            商品名
+            <b>商品名</b>
           </td>
           <td style="width: 180px">
-            単価（税込み）
+            <b>単価（税込み）</b>
           </td>
           <td style="width: 120px">
-            数量
+            <b>数量</b>
           </td>
           <td style="width: 120px">
-            小計
+            <b>小計</b>
           </td>
           <td style="width: 220px">
-            製作ステータス
+            <b>製作ステータス</b>
           </td>
           <td>
 
@@ -66,17 +70,17 @@
             <%= order_detail.item.name %>
           </td>
           <td>
-            <%= order_detail.tax_price %>
+            <%= order_detail.tax_price.to_s(:delimited) %>
           </td>
           <td>
             <%= order_detail.amount %>
           </td>
           <td>
-            <%= order_detail.subtotal %>
+            <%= order_detail.subtotal.to_s(:delimited) %>
           </td>
           <td>
             <%= form_with model: [ :admin, order_detail ]  do |f| %>
-              <%= f.select :making_status, OrderDetail.making_statuses.keys.to_a, {} %><%= f.submit "更新", class:"ml-3  btn btn-success" %>
+              <%= f.select :making_status, OrderDetail.making_statuses.keys.to_a, {} %><%= f.submit "更新", class:"ml-3  btn btn-success", style:"font-weight:bold;" %>
             <% end %>
           </td>
         </tr>
@@ -88,15 +92,15 @@
       <table class = "table table-borderless">
         <tr>
           <td><b>商品合計</b></td>
-          <td><%= @order.buy_total %>円</td>
+          <td><%= @order.buy_total.to_s(:delimited) %>円</td>
         </tr>
         <tr>
           <td><b>送料</b></td>
-          <td><%= @order.shipping_cost %>円</td>
+          <td><%= @order.shipping_cost.to_s(:delimited) %>円</td>
         </tr>
         <tr>
-          <td><b>請求金額総額</b></td>
-          <td><%= @order.total_payment %>円</td>
+          <td><b>請求金額合計</b></td>
+          <td><b><%= @order.total_payment.to_s(:delimited) %>円</b></td>
         </tr>
       </table>
     </div>

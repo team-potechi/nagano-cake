@@ -8,7 +8,7 @@ class Public::CartItemsController < ApplicationController
     @cart_items = @customer.cart_items
     @cart_total = cart_total
     @cart_item = CartItem.new
-    
+
     @cart_count = 0
     @cart_items.each do |cart_item|
       @cart_count += 1
