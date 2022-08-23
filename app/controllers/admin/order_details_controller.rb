@@ -13,9 +13,9 @@ class Admin::OrderDetailsController < ApplicationController
       if @order.order_details.all?{|order_detail| order_detail.making_status == "製作完了"}
         @order.update(status: "発送準備中")
       end
-      redirect_to admin_order_path(@order_detail.order), notice: "製作ステータスを変更しました"
+      redirect_to admin_order_path(@order_detail.order)
     else
-      render admin_order_path, notice: "製作ステータスの変更が保存されませんでした"
+      render admin_order_path
     end
   end
 
