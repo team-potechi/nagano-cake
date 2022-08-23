@@ -21,9 +21,9 @@ class Admin::OrdersController < ApplicationController
       elsif @order.status == "入金確認"
         @order_details.update_all(making_status: "製作待ち")
       end
-      redirect_to admin_order_path(@order), notice: "注文ステータスを変更しました"
+      redirect_to admin_order_path(@order)
     else
-      render "show", notice: "注文ステータスの変更が保存されませんでした"
+      render "show"
     end
   end
 
