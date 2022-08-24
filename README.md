@@ -41,7 +41,7 @@ Cloud9（Amazon Linux 2)
 
 ## ER図
 
-
+![ER図](https://raw.githubusercontent.com/team-potechi/nagano-cake/main/app/assets/images/ER%E5%9B%B3.jpg)
 
 ## 主な機能
 
